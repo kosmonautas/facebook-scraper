@@ -2,6 +2,7 @@ import csv
 import locale
 import logging
 import sys
+import json
 from typing import Iterator, Optional, Tuple, Union
 
 from .constants import DEFAULT_REQUESTS_TIMEOUT
@@ -92,7 +93,7 @@ def write_posts_to_csv(
     keys = list_of_posts[0].keys()
 
     if filename is None:
-        filename = str(account or group) + "_posts.csv"
+        return print(json.dumps(list_of_posts, default=str, ensure_ascii=False))
 
     if encoding is None:
         encoding = locale.getpreferredencoding()
